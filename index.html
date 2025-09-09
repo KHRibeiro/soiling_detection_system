@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Artigos sobre Soiling em PV</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f7f9fc;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1a4c7c;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    input, select {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #1a4c7c;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f2f6fb;
+    }
+    a {
+      color: #1a4c7c;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Artigos sobre Soiling em Sistemas Fotovoltaicos</h1>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Buscar por título, autor ou descrição...">
+    <select id="yearFilter">
+      <option value="">Todos os anos</option>
+      <option value="2022">2022</option>
+      <option value="2020">2020</option>
+      <option value="2019">2019</option>
+      <option value="2017">2017</option>
+      <option value="2013">2013</option>
+    </select>
+  </div>
+
+  <table id="articlesTable">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Autores</th>
+        <th>Ano</th>
+        <th>Descrição</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Monitoring PV Soiling: Assessment, Challenges, and Needs</td>
+        <td>Micheli et al., 2020 (NREL/IEA-PVPS)</td>
+        <td>2020</td>
+        <td>Revisão crítica das técnicas de monitoramento; padronização e lacunas.</td>
+        <td><a href="Monitoring photovoltaic soiling.pdf" target="_blank">Abrir</a></td>
+      </tr>
+      <tr>
+        <td>Techno-Economic Assessment of Soiling Losses and Mitigation Strategies</td>
+        <td>Ilse et al., 2019 (Joule)</td>
+        <td>2019</td>
+        <td>Estudo econômico de perdas por sujidade; modelos e análise custo-benefício.</td>
+        <td><a href="Techno-Economic Assessment of Soiling.pdf" target="_blank">Abrir</a></td>
+      </tr>
+      <tr>
+        <td>Fundamentals of Soiling Processes on PV Modules</td>
+        <td>Micheli & Muller, 2017</td>
+        <td>2017</td>
+        <td>Revisão sobre mecanismos de deposição, remoção e mitigação da sujidade.</td>
+        <td><a href="Fundamentals of soiling processes on photovoltaic modules.pdf" target="_blank">Abrir</a></td>
+      </tr>
+      <tr>
+        <td>Soiling effect in solar energy conversion systems</td>
+        <td>Sarver et al., 2013 (Renewable & Sustainable Energy Reviews)</td>
+        <td>2013</td>
+        <td>Panorama dos efeitos da sujidade em diferentes tecnologias de energia solar.</td>
+        <td><a href="Soiling effect in solar energy conversion systems.pdf" target="_blank">Abrir</a></td>
+      </tr>
+      <tr>
+        <td>IEA-PVPS T13: Soiling Losses – Impact on PV Plants</td>
+        <td>IEA-PVPS Task 13, 2022</td>
+        <td>2022</td>
+        <td>Documento técnico global; recomendações de mitigação e monitoramento.</td>
+        <td><a href="IEA-PVPS-T13-21-2022-REPORT-Soiling-Losses-PV-Plants.pdf" target="_blank">Abrir</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const yearFilter = document.getElementById('yearFilter');
+    const table = document.getElementById('articlesTable');
+    const rows = table.getElementsByTagName('tr');
+
+    function filterTable() {
+      const searchValue = searchInput.value.toLowerCase();
+      const yearValue = yearFilter.value;
+
+      for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        const title = cells[0].textContent.toLowerCase();
+        const authors = cells[1].textContent.toLowerCase();
+        const year = cells[2].textContent;
+        const description = cells[3].textContent.toLowerCase();
+
+        const matchesSearch = title.includes(searchValue) || authors.includes(searchValue) || description.includes(searchValue);
+        const matchesYear = !yearValue || year === yearValue;
+
+        if (matchesSearch && matchesYear) {
+          rows[i].style.display = '';
+        } else {
+          rows[i].style.display = 'none';
+        }
+      }
+    }
+
+    searchInput.addEventListener('keyup', filterTable);
+    yearFilter.addEventListener('change', filterTable);
+  </script>
+</body>
+</html>
