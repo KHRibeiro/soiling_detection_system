@@ -107,11 +107,10 @@ async function fetchData() {
   data.forEach(item => {
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td>${item.titulo}</td>
+      <td>${item.titulo? `<a href="${item.link}" target="_blank">${item.titulo}</a>` : 'vazio'}</td>
       <td>${item.autores}</td>
       <td>${item.ano}</td>
       <td>${item.descricao}</td>
-      <td>${item.link ? `<a href="${item.link}" target="_blank">${item.titulo}</a>` : 'vazio'}</td>
     `;
     tbody.appendChild(row);
   });
@@ -157,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </script>
 </body>
 </html>
+
 
 
 
