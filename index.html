@@ -79,45 +79,47 @@
         <th>Link</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>Monitoring PV Soiling: Assessment, Challenges, and Needs</td>
-        <td>Micheli et al., 2020 (NREL/IEA-PVPS)</td>
-        <td>2020</td>
-        <td>Revisão crítica das técnicas de monitoramento; padronização e lacunas.</td>
-        <td><a href="Monitoring photovoltaic soiling.pdf" target="_blank">Abrir</a></td>
-      </tr>
-      <tr>
-        <td>Techno-Economic Assessment of Soiling Losses and Mitigation Strategies</td>
-        <td>Ilse et al., 2019 (Joule)</td>
-        <td>2019</td>
-        <td>Estudo econômico de perdas por sujidade; modelos e análise custo-benefício.</td>
-        <td><a href="Techno-Economic Assessment of Soiling.pdf" target="_blank">Abrir</a></td>
-      </tr>
-      <tr>
-        <td>Fundamentals of Soiling Processes on PV Modules</td>
-        <td>Micheli & Muller, 2017</td>
-        <td>2017</td>
-        <td>Revisão sobre mecanismos de deposição, remoção e mitigação da sujidade.</td>
-        <td><a href="Fundamentals of soiling processes on photovoltaic modules.pdf" target="_blank">Abrir</a></td>
-      </tr>
-      <tr>
-        <td>Soiling effect in solar energy conversion systems</td>
-        <td>Sarver et al., 2013 (Renewable & Sustainable Energy Reviews)</td>
-        <td>2013</td>
-        <td>Panorama dos efeitos da sujidade em diferentes tecnologias de energia solar.</td>
-        <td><a href="Soiling effect in solar energy conversion systems.pdf" target="_blank">Abrir</a></td>
-      </tr>
-      <tr>
-        <td>IEA-PVPS T13: Soiling Losses – Impact on PV Plants</td>
-        <td>IEA-PVPS Task 13, 2022</td>
-        <td>2022</td>
-        <td>Documento técnico global; recomendações de mitigação e monitoramento.</td>
-        <td><a href="IEA-PVPS-T13-21-2022-REPORT-Soiling-Losses-PV-Plants.pdf" target="_blank">Abrir</a></td>
-      </tr>
-    </tbody>
+    <tbody></tbody>
   </table>
 
+
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+  const SUPABASE_URL = 'https://sxbiecndrwrdtnkhfilt.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4YmllY25kcndyZHRua2hmaWx0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc0MzE0NzEsImV4cCI6MjA3MzAwNzQ3MX0.AupqMUMM0hznc_yTf0icI78r0LVf6hbDeaC6s5i13KI';
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+
+
+async function fetchData() {
+  const { data, error } = await supabase.from('artigos_soiling').select('*');
+  if (error) {
+    console.error('Erro ao buscar dados:', error.message);
+    return;
+  }
+
+  const tbody = document.querySelector('#results-table tbody');
+  tbody.innerHTML = '';
+
+
+  data.forEach(item => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${item.titulo}</td>
+      <td>${item.autores}</td>
+      <td>${item.ano}</td>
+      <td>${item.descricao}</td>
+      <td>${item.file_url ? `<a href="${item.file_url}" target="_blank">link</a>` : 'vazio'}</td>
+    `;
+    tbody.appendChild(row);
+  });
+
+}
+
+</script>
+  
   <script>
     const searchInput = document.getElementById('searchInput');
     const yearFilter = document.getElementById('yearFilter');
