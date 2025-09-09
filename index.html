@@ -14,6 +14,18 @@
       text-align: center;
       color: #1a4c7c;
     }
+    
+h3 {
+  font-family: Arial, sans-serif;
+  color: #1a4c7c;
+  font-size: 24px;
+  text-align: right;       /* Alinha o texto à direita dentro do elemento */
+  margin-right: 0;         /* Remove margem à direita, se necessário */
+  position: absolute;      /* Permite posicionamento exato */
+  top: 20px;               /* Distância do topo */
+  right: 0;                /* Cola na borda direita */
+}
+
     .controls {
       display: flex;
       justify-content: center;
@@ -56,7 +68,7 @@
 </head>
 <body>
   <h1>Artigos - Sujidade em painéis fotovoltaicos</h1>
-
+  <h3>Kássio Henrique Ribeiro</h3>
   <div class="controls">
     <input type="text" id="searchInput" placeholder="Buscar por título, autor ou descrição...">
     <select id="yearFilter">
@@ -182,6 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
 </body>
 </html>
+
 
 
 
