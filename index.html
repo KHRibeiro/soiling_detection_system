@@ -155,8 +155,34 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('keyup', filterTable);
     yearFilter.addEventListener('change', filterTable);
   </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+  const comparer = (idx, asc) => (a, b) => 
+    getCellValue(asc ? a : b, idx).localeCompare(getCellValue(asc ? b : a, idx));
+
+  document.querySelectorAll('#articlesTable th').forEach(th => {
+    th.addEventListener('click', () => {
+      const table = th.closest('table');
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const index = Array.from(th.parentNode.children).indexOf(th);
+      const asc = !th.classList.contains('asc');
+      rows.sort(comparer(index, asc));
+      rows.forEach(row => tbody.appendChild(row));
+      th.classList.toggle('asc', asc);
+      th.classList.toggle('desc', !asc);
+    });
+  });
+});
+</script>
+
+  
 </body>
 </html>
+
 
 
 
