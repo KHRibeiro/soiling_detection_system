@@ -111,7 +111,7 @@ async function fetchData() {
       <td>${item.autores}</td>
       <td>${item.ano}</td>
       <td>${item.descricao}</td>
-      <td>${item.link ? `<a href="${item.file_url}" target="_blank">link</a>` : 'vazio'}</td>
+      <td>${item.link ? `<a href="${item.link}" target="_blank">link</a>` : 'vazio'}</td>
     `;
     tbody.appendChild(row);
   });
@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </script>
 </body>
 </html>
+
 
 
 
