@@ -84,6 +84,7 @@ h3 {
   <table id="articlesTable">
     <thead>
       <tr>
+        <th>priorizacao</th>
         <th>Título</th>
         <th>Autores</th>
         <th>Ano</th>
@@ -118,6 +119,7 @@ async function fetchData() {
   data.forEach(item => {
     const row = document.createElement('tr');
     row.innerHTML = `
+      <td>${item.priorizacao}</td>
       <td>${item.titulo? `<a href="${item.link}" target="_blank">${item.titulo}</a>` : 'vazio'}</td>
       <td>${item.autores}</td>
       <td>${item.ano}</td>
@@ -192,6 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
 </body>
 </html>
+
 
 
 
