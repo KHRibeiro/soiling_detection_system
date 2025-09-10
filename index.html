@@ -84,7 +84,7 @@ h3 {
   <table id="articlesTable">
     <thead>
       <tr>
-        <th>priorizacao</th>
+        <th>Ordem</th>
         <th>Título</th>
         <th>Autores</th>
         <th>Ano</th>
@@ -148,10 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       for (let i = 1; i < rows.length; i++) {
         const cells = rows[i].getElementsByTagName('td');
-        const title = cells[0].textContent.toLowerCase();
-        const authors = cells[1].textContent.toLowerCase();
-        const year = cells[2].textContent;
-        const description = cells[3].textContent.toLowerCase();
+        const prio = cells[0].textContent.toLowerCase();
+        const title = cells[1].textContent.toLowerCase();
+        const authors = cells[2].textContent.toLowerCase();
+        const year = cells[3].textContent;
+        const description = cells[4].textContent.toLowerCase();
 
         const matchesSearch = title.includes(searchValue) || authors.includes(searchValue) || description.includes(searchValue);
         const matchesYear = !yearValue || year === yearValue;
@@ -194,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
 </body>
 </html>
+
 
 
 
