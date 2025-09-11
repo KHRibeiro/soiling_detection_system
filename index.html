@@ -79,6 +79,7 @@
 <div class="header">
   <h1>Artigos - Sujidade em painéis fotovoltaicos (Soiling)</h1>
   <h3>Kássio Henrique Ribeiro</h3>
+  <p id="contador-artigos">Quantidade de artigos: 0</p>
 </div>
 
 <div>
@@ -211,9 +212,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tabela = document.querySelector("table");
+    const linhas = tabela.querySelectorAll("tr").length - 1; // Subtrai o cabeçalho
+    document.getElementById("contador-artigos").textContent = `Quantidade de artigos: ${linhas}`;
+  });
+</script>
+
   
 </body>
 </html>
+
 
 
 
