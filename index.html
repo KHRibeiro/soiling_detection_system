@@ -214,17 +214,24 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const tabela = document.querySelector("articlesTable");
-    const linhas = tabela.querySelectorAll("tr").length - 1; // Subtrai o cabeçalho
-    document.getElementById("contador-artigos").textContent = `Quantidade de artigos: ${linhas}`;
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const contador = document.getElementById('contador-artigos');
+  const tbody = document.querySelector('#articlesTable tbody');
+
+  const observer = new MutationObserver(() => {
+  const linhas = tbody.querySelectorAll('tr').length;
+  contador.textContent = `Quantidade de artigos: ${linhas}`;
   });
+
+  observer.observe(tbody, { childList: true });
+});
 </script>
 
   
 </body>
 </html>
+
 
 
 
